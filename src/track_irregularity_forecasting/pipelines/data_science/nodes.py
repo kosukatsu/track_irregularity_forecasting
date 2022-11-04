@@ -14,7 +14,6 @@ from tqdm import tqdm
 from ...models.regression.conv_lstm import ConvLSTM
 from ...models.regression.LSTM import VanillaLSTM
 from ...models.regression.GRU import GRU
-from ...models.regression.conv_lstm_ms import ConvLSTMMultiStep
 from ...models.regression.regressor import Regressor, seiya10
 from ...extras.datasets.input_sequence_dataset import InputSequenceDataset
 from ...extras.datamodules.input_sequence_datamodule import InputSequenceDataModule

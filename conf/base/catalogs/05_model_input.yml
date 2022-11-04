@@ -58,7 +58,7 @@ make_exogenous_series_params:
   filepath: ./data/05_model_input/${section}/exogenous_series_params.yml
 
 input_data:
-  type: jr.extras.kedrodatasets.input_sequence_kedro_dataset.InputSequenceKedroDataSet
+  type: track_irregularity_forecasting.extras.kedrodatasets.input_sequence_kedro_dataset.InputSequenceKedroDataSet
   track_data_dir: "./data/05_model_input/${section}/track/${bow_string}/${task}"
   spational_categorical_exogenous_data_dirs:
     ["./data/05_model_input/${section}/structure.pkl"]

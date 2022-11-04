@@ -12,6 +12,7 @@ conf/**/*credentials*
 # ignore everything in the following folders
 data/**
 logs/**
+data/**
 !data/06_models/**/*.md
 !data/06_models/**/*.yml
 
@@ -25,6 +26,8 @@ logs/**
 # also keep the example dataset
 !data/01_raw/iris.csv
 
+# ignore mlflow 
+mlruns/**
 
 ##########################
 # Common files

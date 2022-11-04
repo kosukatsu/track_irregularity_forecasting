@@ -35,8 +35,6 @@ import click
 from kedro.config import ConfigLoader, TemplatedConfigLoader
 from kedro.framework.hooks import hook_impl
 from kedro.io import DataCatalog
-from kedro.versioning import Journal
-
 
 class ProjectHooks:
     def _parse_cli_global(self, click_ctx):
@@ -64,7 +62,6 @@ class ProjectHooks:
                 globals_dict[param_name] = param
         return globals_dict
 
-    @hook_impl
     def register_config_loader(
         self,
         conf_paths: Iterable[str],
@@ -77,17 +74,15 @@ class ProjectHooks:
             conf_paths, globals_pattern="globals.yml", globals_dict=globals_dict
         )
 
-    @hook_impl
     def register_catalog(
         self,
         catalog: Optional[Dict[str, Dict[str, Any]]],
         credentials: Dict[str, Dict[str, Any]],
         load_versions: Dict[str, str],
         save_version: str,
-        journal: Journal,
     ) -> DataCatalog:
         return DataCatalog.from_config(
-            catalog, credentials, load_versions, save_version, journal
+            catalog, credentials, load_versions, save_version
         )
 
     @hook_impl
