@@ -10,9 +10,9 @@ to forecast at such high frequencies.
 
 ## Notice
 In the experimental results in the paper we use the track geometry irregularity data of Tokaido Shinkansen. 
-However, in order to use the data, you must sign a confidentiality agreement with the Central Japan Railway Company.
+However, the data is not publicly available. In order to use the data, you must sign a confidentiality agreement with the Central Japan Railway Company.
 
-You can check the operation of the code by using dummy data.
+You can check the operation of the code by using dummy data in this repositry.
 
 ## Installation
 We support `Anaconda` enviroment.
