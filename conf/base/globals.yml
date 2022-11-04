@@ -1,0 +1,29 @@
+datasets:
+  pickle: pickle.PickleDataSet
+  csv: pandas.CSVDataSet
+  excel: pandas.ExcelDataSet
+  jr_dataset: track_irregularity_forecasting.extras.kedrodatasets.track_kedro_dataset.TrackKedroDataSet
+
+section: sec27
+bow_string: 10m
+
+start_distance: 27000
+end_distance: 42000
+
+batch_size: 16
+
+model: conv_lstm
+model_list: ["conv_lstm","LSTM","GRU"]
+run_id: 10001
+
+task: "regression"
+
+seed: 42
+
+total_len: 6
+input_len: 5
+
+max_epochs: 2000
+
+test_checkpoint: "last.ckpt"
+train_checkpoint: "None"

@@ -1,0 +1,21 @@
+#######################################################################################################
+# template
+
+_pickle_data: &pickle
+  type: pickle.PickleDataSet
+
+_csv_data: &csv
+  type: pandas.CSVDataSet
+
+_excel_data: &excel
+  type: pandas.ExcelDataSet
+
+_track_kedro_data: &track
+  type: track_irregularity_forecasting.extras.kedrodatasets.track_kedro_dataset.TrackKedroDataSet
+
+#######################################################################################################
+# 07_model_output
+
+inference_result:
+  <<: *pickle
+  filepath: ./data/07_model_output/${model}/${task}/${run_id}.pkl

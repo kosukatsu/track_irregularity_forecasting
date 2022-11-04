@@ -1,0 +1,31 @@
+ds_params:
+
+  checkpoint: "${train_checkpoint}"
+  optimizer:
+    lr: 0.0001
+
+  trainer:
+    gpus: 1
+    max_epochs: ${max_epochs}
+    check_val_every_n_epoch: 10
+    deterministic: True
+
+  call_back:
+    early_stop: False
+    early_stop_configure: null
+    model_checkpoint: True
+    model_checkpoint_configure:
+      dirpath: "./data/06_models/${model}/${task}/${run_id}/"
+      filename: "{epoch}"
+      save_weights_only: True
+      save_last: True
+      monitor: val_loss
+      mode: min
+
+  regression:
+    post_process: null
+
+  range:
+    mode: "overall" # overall,limited
+
+  slice_step: 1

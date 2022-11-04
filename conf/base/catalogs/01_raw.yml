@@ -1,0 +1,153 @@
+#######################################################################################################
+# template
+
+_pickle_data: &pickle
+  type: pickle.PickleDataSet
+
+_csv_data: &csv
+  type: pandas.CSVDataSet
+
+_excel_data: &excel
+  type: pandas.ExcelDataSet
+
+_track_kedro_data: &track
+  type: track_irregularity_forecasting.extras.kedrodatasets.track_kedro_dataset.TrackKedroDataSet
+
+#######################################################################################################
+# 01_raw
+
+## static exogenous raw data
+
+### structure raw data
+
+structure_raw_data_sec27:
+  <<: *csv
+  filepath: ./data/01_raw/shinkansen_raw_data/27-42/線路構造/structure.csv
+  load_args:
+    encoding: utf-8
+    header: 4
+
+structure_raw_data_sec201:
+  <<: *csv
+  filepath: ./data/01_raw/shinkansen_raw_data/201-216/線路構造/土木構造物.csv
+  load_args:
+    encoding: shift-jis
+    header: 4
+
+### welding raw data
+
+_welding_raw_data: &welding_raw
+  <<: *csv
+  load_args:
+    encoding: shift-jis
+    header: 4
+
+welding_raw_data_sec27:
+  <<: *welding_raw
+  filepath: ./data/01_raw/shinkansen_raw_data/27-42/線路構造/溶接(27-42).csv
+
+welding_raw_data_sec201:
+  <<: *welding_raw
+  filepath: ./data/01_raw/shinkansen_raw_data/201-216/線路構造/溶接.csv
+
+### IJ_EJ_raw_data
+_IJ_EJ_raw_data: &IJ_EJ_raw
+  <<: *csv
+  load_args:
+    header: 4
+    encoding: shift-jis
+
+IJ_raw_data_sec27:
+  <<: *IJ_EJ_raw
+  filepath: ./data/01_raw/shinkansen_raw_data/27-42/線路構造/接着絶縁継目.csv
+
+EJ_raw_data_sec27:
+  <<: *IJ_EJ_raw
+  filepath: ./data/01_raw/shinkansen_raw_data/27-42/線路構造/伸縮継目.csv
+
+IJ_raw_data_sec201:
+  <<: *IJ_EJ_raw
+  filepath: ./data/01_raw/shinkansen_raw_data/201-216/線路構造/接着絶縁継目.csv
+
+EJ_raw_data_sec201:
+  <<: *IJ_EJ_raw
+  filepath: ./data/01_raw/shinkansen_raw_data/201-216/線路構造/伸縮継目.csv
+
+## work raw data
+
+_work_raw_data: &work_raw
+  type: pandas.ExcelDataSet
+  load_args:
+    header: 4
+    # encoding: cp932
+
+work_raw_data_sec27:
+  <<: *work_raw
+  filepath: ./data/01_raw/shinkansen_raw_data/27-42/修繕記録/27-42.xlsx
+
+work_raw_data_sec27_2:
+  <<: *csv
+  filepath: ./data/01_raw/shinkansen_raw_data/27-42/修繕記録/2020.10-2021.6 27.00-42.00.csv
+  load_args:
+    header: 4
+    encoding: cp932
+
+work_raw_data_append:
+  <<: *excel
+  filepath: ./data/01_raw/shinkansen_raw_data/27-42/修繕記録/作業種別（補完分）.xlsx
+
+work_raw_data_sec201:
+  <<: *work_raw
+  filepath: ./data/01_raw/shinkansen_raw_data/201-216/修繕記録/201-216.xlsx
+
+work_raw_data_sec201_2:
+  <<: *csv
+  filepath: ./data/01_raw/shinkansen_raw_data/201-216/修繕記録/2020.10-2021.6 201.000-216.000.csv
+  load_args:
+    header: 4
+    encoding: cp932
+
+work_list:
+  <<: *excel
+  filepath: "./data/01_raw/shinkansen_raw_data/高低狂いに影響を与える工事.xlsx"
+  load_args:
+    header: 1
+
+## ballast age data
+ballast_raw_data_sec27_1:
+  <<: *excel
+  filepath: ./data/01_raw/shinkansen_raw_data/27-42/材齢/道床年齢.xlsm
+  load_args:
+    sheet_name: 1
+    header: 4
+
+ballast_raw_data_sec27_2:
+  <<: *excel
+  filepath: ./data/01_raw/shinkansen_raw_data/道床材齢/道床材齢.xlsx
+  load_args:
+    sheet_name: 2
+
+ballast_raw_data_sec27_3:
+  <<: *excel
+  filepath: ./data/01_raw/shinkansen_raw_data/道床材齢/道床材齢.xlsx
+  load_args:
+    sheet_name: 3
+
+ballast_raw_data_sec201_1:
+  <<: *excel
+  filepath: ./data/01_raw/shinkansen_raw_data/201-216/材齢/道床年齢.xlsm
+  load_args:
+    sheet_name: 1
+    header: 4
+
+ballast_raw_data_sec201_2:
+  <<: *excel
+  filepath: ./data/01_raw/shinkansen_raw_data/道床材齢/道床材齢.xlsx
+  load_args:
+    sheet_name: 0
+
+ballast_raw_data_sec201_3:
+  <<: *excel
+  filepath: ./data/01_raw/shinkansen_raw_data/道床材齢/道床材齢.xlsx
+  load_args:
+    sheet_name: 1

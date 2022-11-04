@@ -1,0 +1,102 @@
+#######################################################################################################
+# template
+
+_pickle_data: &pickle
+  type: pickle.PickleDataSet
+
+_csv_data: &csv
+  type: pandas.CSVDataSet
+
+_excel_data: &excel
+  type: pandas.ExcelDataSet
+
+_track_kedro_data: &track
+  type: track_irregularity_forecasting.extras.kedrodatasets.track_kedro_dataset.TrackKedroDataSet
+
+#######################################################################################################
+# 04_feature
+## track data filled null data
+data_filled_missing:
+  <<: *pickle
+  filepath: ./data/04_feature/${section}/track/${bow_string}/track_dataset.pkl
+
+data_filled_missing_sec27_10m:
+  <<: *pickle
+  filepath: ./data/04_feature/sec27/track/10m/track_dataset.pkl
+
+data_filled_missing_sec27_5m:
+  <<: *pickle
+  filepath: ./data/04_feature/sec27/track/5m/track_dataset.pkl
+
+data_filled_missing_sec27_original:
+  <<: *pickle
+  filepath: ./data/04_feature/sec27/track/original/track_dataset.pkl
+
+data_filled_missing_sec201_10m:
+  <<: *pickle
+  filepath: ./data/04_feature/sec201/track/10m/track_dataset.pkl
+
+data_filled_missing_sec201_5m:
+  <<: *pickle
+  filepath: ./data/04_feature/sec201/track/5m/track_dataset.pkl
+
+data_filled_missing_sec201_original:
+  <<: *pickle
+  filepath: ./data/04_feature/sec201/track/original/track_dataset.pkl
+
+fill_missing_params:
+  type: yaml.YAMLDataSet
+  filepath: ./data/04_feature/fill_missing_params.yml
+
+## track min and max data
+
+train_max_min:
+  <<: *pickle
+  filepath: ./data/04_feature/${section}/${bow_string}/min_max.pkl
+
+max_min_wo_split:
+  <<: *pickle
+  filepath: ./data/04_feature/${section}/${bow_string}/min_max_wo_split.pkl
+
+## rainfall min and max data
+
+rainfall_max_min:
+  <<: *pickle
+  filepath: ./data/04_feature/${section}/rainfall_max_min.pkl
+
+## ballast age min and max data
+ballast_age_max_min:
+  <<: *pickle
+  filepath: ./data/04_feature/${section}/ballast_age_max_min.pkl
+
+## tonnage min and max data
+tonnage_max_min:
+  <<: *pickle
+  filepath: ./data/04_feature/${section}/tonnage_max_min.pkl
+
+## work data (seiya)
+work_seiya_data:
+  <<: *pickle
+  filepath: ./data/04_feature/${section}/${bow_string}/work_seiya.pkl
+
+work_seiya_data_sec27:
+  <<: *pickle
+  filepath: ./data/04_feature/sec27/${bow_string}/work_seiya.pkl
+
+work_seiya_data_sec201:
+  <<: *pickle
+  filepath: ./data/04_feature/sec201/${bow_string}/work_seiya.pkl
+
+## work data (unrolled)
+work_unrolled_data:
+  <<: *pickle
+  filepath: ./data/04_feature/${section}/${bow_string}/work_unrolled.pkl
+
+work_unrolled_data_sec27:
+  <<: *pickle
+  filepath: ./data/04_feature/sec27/${bow_string}/work_unrolled.pkl
+
+work_unrolled_data_sec201:
+  <<: *pickle
+  filepath: ./data/04_feature/sec201/${bow_string}/work_unrolled.pkl
+

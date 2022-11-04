@@ -1,0 +1,79 @@
+#######################################################################################################
+# template
+
+_pickle_data: &pickle
+  type: pickle.PickleDataSet
+
+_csv_data: &csv
+  type: pandas.CSVDataSet
+
+_excel_data: &excel
+  type: pandas.ExcelDataSet
+
+_track_kedro_data: &track
+  type: track_irregularity_forecasting.extras.kedrodatasets.track_kedro_dataset.TrackKedroDataSet
+
+#######################################################################################################
+# 05_model_input
+IJ_EJ_data:
+  <<: *pickle
+  filepath: ./data/05_model_input/${section}/IJ_EJ.pkl
+
+structure_data:
+  <<: *pickle
+  filepath: ./data/05_model_input/${section}/structure.pkl
+
+welding_data:
+  <<: *pickle
+  filepath: ./data/05_model_input/${section}/welding.pkl
+
+_track_series_data: &track_series
+  <<: *track
+  filepath: ./data/05_model_input/
+  sec: ${section}
+  bow_string: ${bow_string}
+
+train_track_series_data:
+  <<: *track_series
+  data_name: train
+
+test_track_series_data:
+  <<: *track_series
+  data_name: test
+
+valid_track_series_data:
+  <<: *track_series
+  data_name: valid
+
+wo_split_track_series_data:
+  <<: *track_series
+  data_name: wo_split
+
+data_engeering_params:
+  type: yaml.YAMLDataSet
+  filepath: ./data/05_model_input/${section}/track/${bow_string}/data_engeering_params.yml
+
+make_exogenous_series_params:
+  type: yaml.YAMLDataSet
+  filepath: ./data/05_model_input/${section}/exogenous_series_params.yml
+
+input_data:
+  type: jr.extras.kedrodatasets.input_sequence_kedro_dataset.InputSequenceKedroDataSet
+  track_data_dir: "./data/05_model_input/${section}/track/${bow_string}/${task}"
+  spational_categorical_exogenous_data_dirs:
+    ["./data/05_model_input/${section}/structure.pkl"]
+  spational_flag_exogenous_data_dirs:
+    [
+      "./data/05_model_input/${section}/IJ_EJ.pkl",
+      "./data/05_model_input/${section}/welding.pkl",
+    ]
+  spatio_temporal_flag_exogenous_data_dirs:
+    ["./data/05_model_input/${section}/work"]
+  spatio_temporal_exogenous_data_dirs:
+    [
+      "./data/05_model_input/${section}/rainfall",
+      "./data/05_model_input/${section}/ballast_age",
+      "./data/05_model_input/${section}/tonnage",
+    ]
+  flag_conf: "./data/06_models/${model}/${task}/${run_id}/data.yml"
+  batch_size: ${batch_size}

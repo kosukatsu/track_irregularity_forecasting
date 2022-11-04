@@ -1,0 +1,3 @@
+inference:
+  checkpoint: ${test_checkpoint}
+  datamode: "overall" # "overall","only test"

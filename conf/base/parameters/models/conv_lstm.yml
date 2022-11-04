@@ -1,0 +1,23 @@
+conv_lstm:
+  regression:
+    input_channels: 10
+    hidden_channels: [64, 64]
+    kernel_size: 3
+    last_kernel_size: 3
+    spa_cate_use: True
+    spa_cate_timing: 0
+    spa_cate_input_channel: 1
+    spa_cate_uniques: [5]
+    spa_cate_output_channel: 4
+    spa_flag_use: True
+    spa_flag_timing: 0
+    spa_flag_input_channel: 4
+    spa_flag_output_channel: 4
+    spa_temp_flag_use: True
+    spa_temp_flag_timing: 1
+    spa_temp_flag_input_channel: 9
+    spa_temp_flag_output_channel: 4
+    spa_temp_use: True
+    spa_temp_timing: 0
+    spa_temp_input_channel: 6
+    channel_mode: constant # increase, constant

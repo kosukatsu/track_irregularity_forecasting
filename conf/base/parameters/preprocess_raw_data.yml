@@ -1,0 +1,69 @@
+track_raw_kilotei:
+  interpolate: True
+  interpolate_params:
+    method: cubicspline #"index","spline","cubicspline"
+
+track_raw_data_sec27_5m:
+  start_distance: 27000
+  end_distance: 42000
+  wave_length: 5
+  input_directory: "./data/01_raw/shinkansen_raw_data/27-42/5m弦正矢法波形/"
+  output_file: "./data/02_intermediate/track_data_27_5m.pkl"
+
+track_raw_data_sec27_10m:
+  start_distance: 27000
+  end_distance: 42000
+  wave_length: 10
+  input_directory: "./data/01_raw/shinkansen_raw_data/27-42/10m弦正矢法波形/"
+  output_file: "./data/03_primary/track_data_27_10m.pkl"
+
+track_raw_data_sec27_original_wave:
+  start_distance: 27000
+  end_distance: 42000
+  input_directory: "./data/01_raw/shinkansen_raw_data/27-42/復元原波形/"
+  output_file: "./data/02_intermediate/track_data_27_orignal.pkl"
+
+track_raw_data_sec201_5m:
+  start_distance: 201000
+  end_distance: 216000
+  wave_length: 5
+  input_directory: "./data/01_raw/shinkansen_raw_data/201-216/5m弦正矢法波形/"
+  output_file: "./data/02_intermediate/track_data_201_5m.pkl"
+
+track_raw_data_sec201_10m:
+  start_distance: 201000
+  end_distance: 216000
+  wave_length: 10
+  input_directory: "./data/01_raw/shinkansen_raw_data/201-216/10m弦正矢法波形/"
+  output_file: "./data/03_primary/track_data_201_10m.pkl"
+
+track_raw_data_sec201_original_wave:
+  start_distance: 201000
+  end_distance: 216000
+  input_directory: "./data/01_raw/shinkansen_raw_data/201-216/復元元波形/"
+  output_file: "./data/02_intermediate/track_data_201_original.pkl"
+
+fill_sec27_5m_data_missing:
+  data_5m_columns: ["left_surface", "right_surface"]
+  key_columns: ["date","distance"]
+  output_file: "./data/03_primary/track_data_27_5m.pkl"
+
+fill_sec27_original_data_missing:
+  data_5m_columns: ["left_surface", "right_surface"]
+  key_columns: ["date","distance"]
+  output_file: "./data/03_primary/track_data_27_original.pkl"
+  
+fill_sec201_5m_data_missing:
+  data_5m_columns: ["left_surface", "right_surface"]
+  key_columns: ["date","distance"]
+  output_file: "./data/03_primary/track_data_201_5m.pkl"
+
+fill_sec201_original_data_missing:
+  data_5m_columns: ["left_surface", "right_surface"]
+  key_columns: ["date","distance"]
+  output_file: "./data/03_primary/track_data_201_original.pkl"
+
+bow_string_list:
+  10m: 10m
+  5m: 5m
+  original: original

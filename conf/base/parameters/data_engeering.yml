@@ -1,0 +1,55 @@
+data_engeering:
+
+  test_split_date: "2018/11/07"
+  valid_split_date: "2017/04/26"
+
+  sequance_datapath: "./data/05_model_input/"
+
+
+  feature_order: 
+    [
+      "lateral_osc",
+      "vertical_osc",
+      "flatness",
+      "gauge",
+      "left_surface",
+      "right_surface",
+      "cross_level",
+      "left_alignment",
+      "right_alignment",
+      "velocity",
+    ]
+
+  min_max_params:
+    method: "measurement" # "measurement","config"
+    config_value:
+      lateral_osc:
+        max: 0.12
+        min: -0.09
+      vertical_osc:
+        max: 0.13
+        min: -0.13
+      flatness:
+        max: 6
+        min: -6
+      gauge:
+        max: 7
+        min: -33
+      left_surface:
+        max: 8
+        min: -11
+      right_surface:
+        max: 8
+        min: -11
+      cross_level:
+        max: 6
+        min: -6
+      left_alignment:
+        max: 14
+        min: -14
+      right_alignment:
+        max: 14
+        min: -14
+      velocity:
+        max: 270
+        min: 100

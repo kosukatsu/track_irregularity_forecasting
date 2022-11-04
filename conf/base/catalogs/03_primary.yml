@@ -1,0 +1,159 @@
+#######################################################################################################
+# template
+
+_pickle_data: &pickle
+  type: pickle.PickleDataSet
+
+_csv_data: &csv
+  type: pandas.CSVDataSet
+
+_excel_data: &excel
+  type: pandas.ExcelDataSet
+
+_track_kedro_data: &track
+  type: track_irregularity_forecasting.extras.kedrodatasets.track_kedro_dataset.TrackKedroDataSet
+
+#######################################################################################################
+# 03_primary
+
+## track preprocessed data
+
+track_data_sec27_5m:
+  <<: *pickle
+  filepath: ./data/03_primary/sec27/track/5m/track_dataset.pkl
+
+track_data_sec27_10m:
+  <<: *pickle
+  filepath: ./data/03_primary/sec27/track/10m/track_dataset.pkl
+
+track_data_sec27_original_wave:
+  <<: *pickle
+  filepath: ./data/03_primary/sec27/track/original/track_dataset.pkl
+
+track_data_sec201_5m:
+  <<: *pickle
+  filepath: ./data/03_primary/sec201/track/5m/track_dataset.pkl
+
+track_data_sec201_10m:
+  <<: *pickle
+  filepath: ./data/03_primary/sec201/track/10m/track_dataset.pkl
+
+track_data_sec201_original_wave:
+  <<: *pickle
+  filepath: ./data/03_primary/sec201/track/original/track_dataset.pkl
+
+track_data:
+  <<: *pickle
+  filepath: ./data/03_primary/${section}/track/${bow_string}/track_dataset.pkl
+
+preprocess_raw_data_params:
+  type: yaml.YAMLDataSet
+  filepath: ./data/03_primary/prerocess_raw_data_params.yml
+
+## static exogenous preprocessed data
+### strcuture preprocessed data
+structure_preprocessed_data_sec27:
+  <<: *pickle
+  filepath: ./data/03_primary/sec27/structure.pkl
+
+structure_preprocessed_data_sec201:
+  <<: *pickle
+  filepath: ./data/03_primary/sec201/structure.pkl
+
+structure_preprocessed_data:
+  <<: *pickle
+  filepath: ./data/03_primary/${section}/structure.pkl
+
+### IJ EJ preprocessed data
+IJ_EJ_preprocessed_data_sec27:
+  <<: *pickle
+  filepath: ./data/03_primary/sec27/IJ_EJ.pkl
+
+IJ_EJ_preprocessed_data_sec201:
+  <<: *pickle
+  filepath: ./data/03_primary/sec201/IJ_EJ.pkl
+
+IJ_EJ_preprocessed_data:
+  <<: *pickle
+  filepath: ./data/03_primary/${section}/IJ_EJ.pkl
+
+### welding preprocessed data
+welding_preprocessed_data_sec27:
+  <<: *pickle
+  filepath: ./data/03_primary/sec27/welding.pkl
+
+welding_preprocessed_data_sec201:
+  <<: *pickle
+  filepath: ./data/03_primary/sec201/welding.pkl
+
+welding_preprocessed_data:
+  <<: *pickle
+  filepath: ./data/03_primary/${section}/welding.pkl
+
+## work preprocessed data
+work_preprocessed_data_sec27:
+  <<: *pickle
+  filepath: ./data/03_primary/sec27/work.pkl
+
+work_preprocessed_data_sec201:
+  <<: *pickle
+  filepath: ./data/03_primary/sec201/work.pkl
+
+work_preprocessed_data:
+  <<: *pickle
+  filepath: ./data/03_primary/${section}/work.pkl
+
+## rainfall preprocessed data
+rainfall_preprocessed_data_nishiya:
+  <<: *pickle
+  filepath: ./data/03_primary/sec27/rainfall/nishiya.pkl
+
+rainfall_preprocessed_data_kouza_shibuya:
+  <<: *pickle
+  filepath: ./data/03_primary/sec27/rainfall/kouza_shibuya.pkl
+
+rainfall_preprocessed_data_kakegawa:
+  <<: *pickle
+  filepath: ./data/03_primary/sec201/rainfall/kakegawa.pkl
+
+rainfall_preprocessed_data_fukuroi:
+  <<: *pickle
+  filepath: ./data/03_primary/sec201/rainfall/fukuroi.pkl
+
+rainfall_preprocessed_data_kikukawa:
+  <<: *pickle
+  filepath: ./data/03_primary/sec201/rainfall/kikukawa.pkl
+
+## tonnage preprocessed data
+tonnage_preprocessed_data_shinyoko2odawara:
+  <<: *pickle
+  filepath: ./data/03_primary/sec27/tonnage/shinyoko2odawara.pkl
+
+tonnage_preprocessed_data_shizuoka2kakegawa:
+  <<: *pickle
+  filepath: ./data/03_primary/sec201/tonnage/shizuoka2kakegawa.pkl
+
+tonnage_preprocessed_data_kakegawa:
+  <<: *pickle
+  filepath: ./data/03_primary/sec201/tonnage/kakegawa.pkl
+
+tonnage_preprocessed_data_kakegawa2hamamatsu:
+  <<: *pickle
+  filepath: ./data/03_primary/sec201/tonnage/kakegawa2hamamatsu.pkl
+
+## ballast age preprocessed data
+ballast_age_preprocessed_data_sec27:
+  <<: *pickle
+  filepath: ./data/03_primary/sec27/ballast_age.pkl
+
+ballast_age_preprocessed_data_sec201:
+  <<: *pickle
+  filepath: ./data/03_primary/sec201/ballast_age.pkl
+
+ballast_age_preprocessed_data:
+  <<: *pickle
+  filepath: ./data/03_primary/${section}/ballast_age.pkl
+
+preprocess_exogenous_params:
+  type: yaml.YAMLDataSet
+  filepath: ./data/03_primary/prerocess_exogenous_params.yml

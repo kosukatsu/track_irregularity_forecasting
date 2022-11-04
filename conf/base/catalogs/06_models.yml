@@ -1,0 +1,26 @@
+#######################################################################################################
+# template
+
+_pickle_data: &pickle
+  type: pickle.PickleDataSet
+
+_csv_data: &csv
+  type: pandas.CSVDataSet
+
+_excel_data: &excel
+  type: pandas.ExcelDataSet
+
+_track_kedro_data: &track
+  type: track_irregularity_forecasting.extras.kedrodatasets.track_kedro_dataset.TrackKedroDataSet
+
+#######################################################################################################
+# 06_models
+
+diff_model_params:
+  type: yaml.YAMLDataSet
+  filepath: ./data/06_models/${model}/${task}/${run_id}/model.yml
+####################
+# pytroch_model:
+#   type: kedro_mlflow.io.models.MlflowModelLoggerDataSet
+#   flavor: mlflow.pytroch
+#   filepath: data/06_models/${model}/${task}/model

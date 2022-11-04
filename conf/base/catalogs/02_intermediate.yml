@@ -1,0 +1,35 @@
+#######################################################################################################
+# template
+
+_pickle_data: &pickle
+  type: pickle.PickleDataSet
+
+_csv_data: &csv
+  type: pandas.CSVDataSet
+
+_excel_data: &excel
+  type: pandas.ExcelDataSet
+
+_track_kedro_data: &track
+  type: track_irregularity_forecasting.extras.kedrodatasets.track_kedro_dataset.TrackKedroDataSet
+
+########################################################################################################
+# 02_intermediate
+
+## track intermediate data 5m
+
+track_data_sec27_5m_missing:
+  <<: *pickle
+  filepath: ./data/02_intermediate/track_data_27_5m.pkl
+
+track_data_sec27_original_missing:
+  <<: *pickle
+  filepath: ./data/02_intermediate/track_data_27_original.pkl
+
+track_data_sec201_5m_missing:
+  <<: *pickle
+  filepath: ./data/02_intermediate/track_data_201_5m.pkl
+
+track_data_sec201_original_missing:
+  <<: *pickle
+  filepath: ./data/02_intermediate/track_data_201_original.pkl

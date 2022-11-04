@@ -1,0 +1,64 @@
+preprocess_exogenous:
+  start_distance_sec27: 27000
+  end_distance_sec27: 42000
+
+  start_distance_sec201: 201000
+  end_distance_sec201: 216000
+
+  work_order:
+    [
+      "fix_uneven",
+      "tamping",
+      "marutai",
+      "exchange_ballast",
+      "exchange_rail_r",
+      "exchange_rail_l",
+      "disposal_mud",
+      "sleeper",
+      "others",
+    ]
+
+  rainfall_loc_labels:
+    nishiya: 西　谷
+    kouza_shibuya: 高座渋谷
+    kakegawa: 掛　川
+    fukuroi: 袋　井
+    kikukawa: 菊　川
+
+  tonnage_section_labels:
+    shinyoko2odawara: "新横浜 - 小田原"
+    shizuoka2kakegawa: "静　岡 - 掛　川"
+    kakegawa: "掛川駅"
+    kakegawa2hamamatsu: "掛　川 - 浜　松"
+
+  error_to_border_of_structure: 2
+
+  rainfall_min_max_params:
+    method: "measurement" # "measurement","config"
+    config_value:
+      max(10min.):
+        max: 25 
+        min: 0.00
+      max(1hour):
+        max: 100 
+        min: 0.00
+      max(1day):
+        max: 300 
+        min: 0.00
+      sum:
+        max: 400 
+        min: 0.00
+
+  ballast_age_min_max_params:
+    method: "measurement" # "measurement","config"
+    config_value:
+      ballast_age:
+        max: 60
+        min: 0.00
+
+  tonnage_min_max_params:
+    method: "measurement" # "measurement","config"
+    config_value:
+      tonnage:
+        max: 3000
+        min: 0.00

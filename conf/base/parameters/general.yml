@@ -1,0 +1,34 @@
+general:
+  seed: ${seed}
+
+  total_len: ${total_len}
+  input_len: ${input_len}
+
+  start_distance: "${start_distance}"
+  end_distance: "${end_distance}"
+
+  task: "regression"
+
+  run_id: ${run_id}
+
+  predict_columns: ["left_surface", "right_surface"]
+  
+  eval_feature_order:
+    [ 
+      "left_surface",
+      "right_surface",
+    ]
+
+  data_class:
+    "train": "train"
+    "valid": "valid"
+    "test": "test"
+    "wo_split": "wo_split"
+
+  section: "${section}"
+  bow_string: "10m"
+
+  model: "${model}"
+  model_list: ${model_list}
+
+  open_date: "1964/10/01"
