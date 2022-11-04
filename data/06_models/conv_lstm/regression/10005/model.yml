@@ -1,0 +1,3 @@
+conv_lstm:
+  regression:
+    spa_temp_input_channel: 5

@@ -1,0 +1,7 @@
+conv_lstm:
+  regression:
+    spa_cate_use: False
+    spa_flag_use: False
+    spa_temp_flag_use: False
+    spa_temp_use: False
+

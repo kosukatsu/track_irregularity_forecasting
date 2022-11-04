@@ -1,0 +1,4 @@
+spa_cate: [True]
+spa_flag: [True, True]
+spa_temp_flag: [True]
+spa_temp: [True, True,False]

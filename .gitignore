@@ -12,6 +12,8 @@ conf/**/*credentials*
 # ignore everything in the following folders
 data/**
 logs/**
+!data/06_models/**/*.md
+!data/06_models/**/*.yml
 
 # except their sub-folders
 !data/**/

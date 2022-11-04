@@ -1,0 +1,8 @@
+LSTM:
+  regression:
+    input_size: 72
+    hidden_size: 20
+    num_layers: 2
+    bias: True
+    dropout: 0.0
+    exogenous: embedding
