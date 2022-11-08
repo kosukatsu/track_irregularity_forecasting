@@ -141,9 +141,6 @@ def make_work_time_series(
 def make_rainfall_series(
     df1: pd.DataFrame,
     df2: pd.DataFrame,
-    df3: pd.DataFrame,
-    df4: pd.DataFrame,
-    df5: pd.DataFrame,
     section: str,
     split_date: str,
     valid_split_date: str,
@@ -155,20 +152,12 @@ def make_rainfall_series(
     end_distance: int,
 ):
     L = 15000
-    if section == "sec27":
-        rainfall = np.empty((L, len(df1.index), 4))
-        rainfall[:11000] = df1.to_numpy().reshape((1, len(df1.index), 4))
-        rainfall[11000:] = df2.to_numpy().reshape((1, len(df1.index), 4))
-        rainfall = rainfall[(start_distance - 27000) : (end_distance - 27000)]
-        dates = df1.index.strftime("%Y/%m/%d").to_numpy()
-    elif section == "sec201":
-        rainfall = np.empty((L, len(df3.index), 4))
-        rainfall[:6400] = df3.to_numpy().reshape((1, len(df3.index), 4))
-        rainfall[6400:13000] = df4.to_numpy().reshape((1, len(df3.index), 4))
-        rainfall[13000:] = df5.to_numpy().reshape((1, len(df3.index), 4))
-        dates = df3.index.strftime("%Y/%m/%d").to_numpy()
-        rainfall = rainfall[(start_distance - 27000) : (end_distance - 27000)]
-
+    rainfall = np.empty((L, len(df1.index), 4))
+    rainfall[:11000] = df1.to_numpy().reshape((1, len(df1.index), 4))
+    rainfall[11000:] = df2.to_numpy().reshape((1, len(df1.index), 4))
+    rainfall = rainfall[(start_distance - 27000) : (end_distance - 27000)]
+    dates = df1.index.strftime("%Y/%m/%d").to_numpy()
+    
     rainfall = rainfall.transpose((1, 0, 2))
     train_valid_data, test_data, train_valid_dates, test_dates = split_data(
         rainfall, dates, split_date
@@ -339,9 +328,6 @@ def make_ballast_age_series(
 
 def make_tonnage_series(
     df1: pd.DataFrame,
-    df2: pd.DataFrame,
-    df3: pd.DataFrame,
-    df4: pd.DataFrame,
     section: int,
     split_date: str,
     valid_split_date: str,
@@ -353,20 +339,10 @@ def make_tonnage_series(
     end_distance: int,
 ):
     L = 15000
-    if section == "sec27":
-        dates = df1.index.strftime("%Y/%m/%d").to_numpy()
-        tonnage = np.empty((len(dates), L))
-        tonnage[:, :] = df1["delta_load"].to_numpy().reshape(-1, 1)
-        tonnage = tonnage[:, (start_distance - 27000) : (end_distance - 27000)]
-    elif section == "sec201":
-        dates = df2.index.strftime("%Y/%m/%d").to_numpy()
-        tonnage = np.empty((len(dates), L))
-        tonnage[:, : (210380 - 201000)] = df2["delta_load"].to_numpy().reshape(-1, 1)
-        tonnage[:, (210380 - 201000) : (211650 - 201000)] = (
-            df3["delta_load"].to_numpy().reshape(-1, 1)
-        )
-        tonnage[:, (211650 - 201000) :] = df4["delta_load"].to_numpy().reshape(-1, 1)
-        tonnage = tonnage[:, (start_distance - 201000) : (end_distance - 201000)]
+    dates = df1.index.strftime("%Y/%m/%d").to_numpy()
+    tonnage = np.empty((len(dates), L))
+    tonnage[:, :] = df1["delta_load"].to_numpy().reshape(-1, 1)
+    tonnage = tonnage[:, (start_distance - 27000) : (end_distance - 27000)]
 
     tonnage = tonnage.reshape(len(dates), (end_distance - start_distance), 1)
 

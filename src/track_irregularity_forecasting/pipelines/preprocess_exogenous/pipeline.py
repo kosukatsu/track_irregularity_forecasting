@@ -25,15 +25,6 @@ def create_preprocess_sturcture(**kwargs):
                 ],
                 "structure_preprocessed_data_sec27",
             ),
-            node(
-                preprocess_structure,
-                [
-                    "structure_raw_data_sec201",
-                    "params:preprocess_exogenous.start_distance_sec201",
-                    "params:preprocess_exogenous.end_distance_sec201",
-                ],
-                "structure_preprocessed_data_sec201",
-            ),
         ]
     )
 
@@ -49,15 +40,6 @@ def create_preprocess_welding(**kwargs):
                     "params:preprocess_exogenous.end_distance_sec27",
                 ],
                 "welding_preprocessed_data_sec27",
-            ),
-            node(
-                preprocess_welding,
-                [
-                    "welding_raw_data_sec201",
-                    "params:preprocess_exogenous.start_distance_sec201",
-                    "params:preprocess_exogenous.end_distance_sec201",
-                ],
-                "welding_preprocessed_data_sec201",
             ),
         ]
     )
@@ -75,16 +57,6 @@ def create_preprocess_IJ_EJ(**kwargs):
                     "params:preprocess_exogenous.end_distance_sec27",
                 ],
                 "IJ_EJ_preprocessed_data_sec27",
-            ),
-            node(
-                preprocess_IJ_EJ,
-                [
-                    "IJ_raw_data_sec201",
-                    "EJ_raw_data_sec201",
-                    "params:preprocess_exogenous.start_distance_sec201",
-                    "params:preprocess_exogenous.end_distance_sec201",
-                ],
-                "IJ_EJ_preprocessed_data_sec201",
             ),
         ]
     )
@@ -109,30 +81,6 @@ def create_preprocess_rainfall_pipeline(**kwargs):
                 },
                 "rainfall_preprocessed_data_kouza_shibuya",
             ),
-            node(
-                preprocess_rainfall,
-                {
-                    "loc_name": "params:preprocess_exogenous.rainfall_loc_labels.kakegawa",
-                    "track": "track_data_sec201_10m",
-                },
-                "rainfall_preprocessed_data_kakegawa",
-            ),
-            node(
-                preprocess_rainfall,
-                {
-                    "loc_name": "params:preprocess_exogenous.rainfall_loc_labels.fukuroi",
-                    "track": "track_data_sec201_10m",
-                },
-                "rainfall_preprocessed_data_fukuroi",
-            ),
-            node(
-                preprocess_rainfall,
-                {
-                    "loc_name": "params:preprocess_exogenous.rainfall_loc_labels.kikukawa",
-                    "track": "track_data_sec201_10m",
-                },
-                "rainfall_preprocessed_data_kikukawa",
-            ),
         ]
     )
 
@@ -155,21 +103,6 @@ def create_preprocess_ballast_age_pipeline(**kwargs):
                 },
                 "ballast_age_preprocessed_data_sec27",
             ),
-            node(
-                preprocess_ballast_age,
-                {
-                    "df1": "ballast_raw_data_sec201_1",
-                    "df2": "ballast_raw_data_sec201_2",
-                    "df3": "ballast_raw_data_sec201_3",
-                    "structure": "structure_raw_data_sec201",
-                    "track": "track_data_sec201_10m",
-                    "start_distance": "params:preprocess_exogenous.start_distance_sec201",
-                    "end_distance": "params:preprocess_exogenous.end_distance_sec201",
-                    "open_date": "params:general.open_date",
-                    "e": "params:preprocess_exogenous.error_to_border_of_structure",
-                },
-                "ballast_age_preprocessed_data_sec201",
-            ),
         ]
     )
 
@@ -184,30 +117,6 @@ def create_preprocess_tonnage_pipeline(**kwargs):
                     "section_name": "params:preprocess_exogenous.tonnage_section_labels.shinyoko2odawara",
                 },
                 "tonnage_preprocessed_data_shinyoko2odawara",
-            ),
-            node(
-                preprocess_tonnage,
-                {
-                    "track": "track_data_sec201_10m",
-                    "section_name": "params:preprocess_exogenous.tonnage_section_labels.shizuoka2kakegawa",
-                },
-                "tonnage_preprocessed_data_shizuoka2kakegawa",
-            ),
-            node(
-                preprocess_tonnage,
-                {
-                    "track": "track_data_sec201_10m",
-                    "section_name": "params:preprocess_exogenous.tonnage_section_labels.kakegawa",
-                },
-                "tonnage_preprocessed_data_kakegawa",
-            ),
-            node(
-                preprocess_tonnage,
-                {
-                    "track": "track_data_sec201_10m",
-                    "section_name": "params:preprocess_exogenous.tonnage_section_labels.kakegawa2hamamatsu",
-                },
-                "tonnage_preprocessed_data_kakegawa2hamamatsu",
             ),
         ]
     )
@@ -230,18 +139,6 @@ def create_preprocess_work_pipeline(**kwargs):
                 "work_preprocessed_data_sec27",
             ),
             node(
-                preprocess_work,
-                {
-                    "df1": "work_raw_data_sec201",
-                    "df2": "work_raw_data_sec201_2",
-                    "work_list": "work_list",
-                    "track": "track_data_sec201_10m",
-                    "structure": "structure_raw_data_sec201",
-                    "e": "params:preprocess_exogenous.error_to_border_of_structure",
-                },
-                "work_preprocessed_data_sec201",
-            ),
-            node(
                 seiya_work,
                 {
                     "causal_df": "work_preprocessed_data_sec27",
@@ -258,24 +155,6 @@ def create_preprocess_work_pipeline(**kwargs):
                     "causal_df": "work_seiya_data_sec27",
                 },
                 "work_unrolled_data_sec27",
-            ),
-            node(
-                seiya_work,
-                {
-                    "causal_df": "work_preprocessed_data_sec201",
-                    "bow_string": "params:general.bow_string",
-                    "start_distance": "params:preprocess_exogenous.start_distance_sec201",
-                    "end_distance": "params:preprocess_exogenous.start_distance_sec201",
-                },
-                "work_seiya_data_sec201",
-            ),
-            node(
-                unroll_work,
-                {
-                    "track": "data_filled_missing_sec201_10m",
-                    "causal_df": "work_seiya_data_sec201",
-                },
-                "work_unrolled_data_sec201",
             ),
         ]
     )

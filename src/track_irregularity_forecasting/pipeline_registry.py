@@ -18,7 +18,6 @@ def register_pipelines() -> Dict[str, Pipeline]:
         A mapping from a pipeline name to a ``Pipeline`` object.
     """
     preprocess_pipeline = pr.create_preprocess_raw_data_pipeline()
-    preprocess_5m_pipeline = pr.create_fill_5m_data_missing_pipeline()
 
     data_engeering_pipeline = de.create_data_engeering_pipeline()
 
@@ -46,7 +45,6 @@ def register_pipelines() -> Dict[str, Pipeline]:
     return {
         "__default__": preprocess_pipeline,  # dummy
         "preprocess": preprocess_pipeline,
-        "preprocess_5m": preprocess_5m_pipeline,
         "data_engeering": data_engeering_pipeline,
         "preprocess_structure": preprocess_structure_pipeline
         + preprocess_dump_exogenous_params,

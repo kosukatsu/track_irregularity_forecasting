@@ -25,22 +25,12 @@ def strToDate(input_str):
 def dump_preprocess_params(
     general_params,
     track_raw_kilotei,
-    sec27_5m,
     sec27_10m,
-    sec27_original,
-    sec201_5m,
-    sec201_10m,
-    sec201_original,
 ):
     preprocess_params = {
         "general_params": general_params,
         "track_raw_kilotei": track_raw_kilotei,
-        "sec27_5m": sec27_5m,
         "sec27_10m": sec27_10m,
-        "sec27_original": sec27_original,
-        "sec201_5m": sec201_5m,
-        "sec201_10m": sec201_10m,
-        "sec201_original": sec201_original,
     }
     return preprocess_params
 
@@ -162,21 +152,6 @@ def preprocess_track_degradation(params, track_raw_kilotei_params):
 
     return df
 
-
-def fill_5m_data_missing(data_5m, data_10m, params, features_list):
-    columns_5m = params["data_5m_columns"]
-    columns_10m = list(set(features_list) - set(columns_5m))
-    columns_5m_y = [c + "_y" for c in columns_5m]
-    columns_10m_x = [c + "_x" for c in columns_10m]
-    df = pd.merge(data_10m, data_5m, on=params["key_columns"], how="outer")
-    df = df[params["key_columns"] + columns_5m_y + columns_10m_x]
-    rename_d = {k: v for k, v in zip(columns_10m_x, columns_10m)}
-    rename_d.update({k: v for k, v in zip(columns_5m_y, columns_5m)})
-    df = df.rename(columns=rename_d)
-    df = df[["date", "distance"] + features_list]
-    return df
-
-
 def interpolateMissingValue(df, date, cols_name, isSetIndex=True):
     if isSetIndex:
         df = df.reset_index()
@@ -206,20 +181,3 @@ def fill_missing(df, bow_string):
     if bow_string == "5m":
         df = df[df.date > "2011-05-27"]
     return df
-
-
-def dump_fill_5m_missing_params(
-    data_engeering_params,
-    fill_sec27_5m,
-    fill_sec27_original,
-    fill_sec201_5m,
-    fill_sec201_original,
-):
-    dump_fill_5m_missing_params = {
-        "data_engeering_params": data_engeering_params,
-        "fill_sec27_5m": fill_sec27_5m,
-        "fill_sec27_original": fill_sec27_original,
-        "fill_sec201_5m": fill_sec201_5m,
-        "fill_sec201_original": fill_sec201_original,
-    }
-    return dump_fill_5m_missing_params

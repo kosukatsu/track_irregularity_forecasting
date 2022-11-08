@@ -48,9 +48,6 @@ def create_exogenous_series_pipeline(**kwargs):
                 {
                     "df1": "rainfall_preprocessed_data_nishiya",
                     "df2": "rainfall_preprocessed_data_kouza_shibuya",
-                    "df3": "rainfall_preprocessed_data_kikukawa",
-                    "df4": "rainfall_preprocessed_data_kakegawa",
-                    "df5": "rainfall_preprocessed_data_fukuroi",
                     "section": "params:general.section",
                     "split_date": "params:data_engeering.test_split_date",
                     "valid_split_date": "params:data_engeering.valid_split_date",
@@ -84,9 +81,6 @@ def create_exogenous_series_pipeline(**kwargs):
                 make_tonnage_series,
                 {
                     "df1": "tonnage_preprocessed_data_shinyoko2odawara",
-                    "df2": "tonnage_preprocessed_data_shizuoka2kakegawa",
-                    "df3": "tonnage_preprocessed_data_kakegawa",
-                    "df4": "tonnage_preprocessed_data_kakegawa2hamamatsu",
                     "section": "params:general.section",
                     "split_date": "params:data_engeering.test_split_date",
                     "valid_split_date": "params:data_engeering.valid_split_date",
